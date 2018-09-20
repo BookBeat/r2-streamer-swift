@@ -3,6 +3,7 @@ var startX = 0;
 var startY = 0;
 var maxScreenX = 0;
 var maxScreenY = 0;
+var touchStartTime = null;
 
 window.addEventListener("load", function(){ // on page load
                         // Get screen X and Y sizes.
@@ -33,6 +34,7 @@ var snapCurrentPosition = function() {
     document.body.scrollLeft = currentOffsetSnapped;
 };
 
+
 // When a touch is detected records its starting coordinates and if it's a singleTouchGesture.
 var handleTouchStart = function(event) {
     if (event.target.nodeName.toUpperCase() === 'A') {
@@ -47,6 +49,8 @@ var handleTouchStart = function(event) {
 
     startX = touch.screenX % maxScreenX;
     startY = touch.screenY % maxScreenY;
+    
+    touchStartTime = Date.now();
 };
 
 // When a touch ends, check if any action has to be made, and contact native code.
@@ -54,6 +58,13 @@ var handleTouchEnd = function(event) {
     if(!singleTouchGesture) {
         return;
     }
+    
+    if(touchStartTime != null && Date.now() - touchStartTime > 500) {
+        touchStartTime = null;
+        return;
+    }
+    touchStartTime = null;
+    
     //https://stackoverflow.com/questions/4878484/difference-between-tagname-and-nodename
     if (event.target.nodeName == "input") {return}
 
