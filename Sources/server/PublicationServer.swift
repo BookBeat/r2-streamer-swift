@@ -210,6 +210,20 @@ public class PublicationServer {
         log(level: .info, "Publication at \(endpoint) has been successfully added.")
     }
 
+    fileprivate func extractContentLengths(publication: Publication, fetcher: Fetcher) {
+        
+        var spineContentLengthTuples = [(_: Link, _: Int)]()
+        for spineLink in publication.spine {
+            let data = try! fetcher.data(forLink: spineLink)!
+            let str = String.init(data: data, encoding: .utf8)!
+            let length = str.count
+            let spineContentLength = (spineItem: spineLink, contentLength: length)
+            spineContentLengthTuples.append(spineContentLength)
+        }
+        
+        publication.contentLengthInfo = ContentLengthInfo(spineContentLengthTuples: spineContentLengthTuples)
+    }
+    
     fileprivate func addResourcesHandler(for pubBox: PubBox, at endpoint: String) throws {
         let publication = pubBox.publication
         let container = pubBox.associatedContainer
@@ -218,10 +232,14 @@ public class PublicationServer {
         // Initialize the Fetcher.
         do {
             fetcher = try Fetcher(publication: publication, container: container)
+            
+            
         } catch {
             log(level: .error, "Fetcher initialisation failed.")
             throw PublicationServerError.fetcher(underlyingError: error)
         }
+        
+        extractContentLengths(publication: publication, fetcher: fetcher)
 
         /// Webserver HTTP GET ressources request handler.
         func resourcesHandler(request: GCDWebServerRequest?) -> GCDWebServerResponse? {
