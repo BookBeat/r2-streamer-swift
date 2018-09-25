@@ -215,8 +215,7 @@ public class PublicationServer {
         var spineContentLengthTuples = [(_: Link, _: Int)]()
         for spineLink in publication.spine {
             let data = try! fetcher.data(forLink: spineLink)!
-            let str = String.init(data: data, encoding: .utf8)!
-            let length = str.count
+            let length = data.count
             let spineContentLength = (spineItem: spineLink, contentLength: length)
             spineContentLengthTuples.append(spineContentLength)
         }
