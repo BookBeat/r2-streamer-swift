@@ -340,8 +340,8 @@ body {
 /* CONFIG */
 
 :root[style*="readium-sepia-on"] {
-  --RS__backgroundColor: #faf4e8;
-  --RS__textColor: #121212;
+  --RS__backgroundColor: #f4ebda;
+  --RS__textColor: #2d2b26;
 
   --RS__linkColor: #0000EE;
   --RS__visitedColor: #551A8B;
