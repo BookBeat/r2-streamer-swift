@@ -79,7 +79,7 @@ public class PublicationServer {
         #if DEBUG
             let port = 8080
         #else
-            let port = 1337
+            let port = 3756
         #endif
         do {
             // TODO: Check if we can use unix socket instead of tcp.
