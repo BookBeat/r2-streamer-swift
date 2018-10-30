@@ -124,6 +124,7 @@
   -webkit-perspective: 1;
   /* Prevents options pop-up when long tap in webkit */
   -webkit-touch-callout: none;
+  -webkit-user-select: none;
 
   /* The reason why we don’t force -webkit-column-axis is that it switches the column-box model to a paged overflow model.
      In other words, columns become useless, the sizing of the :root itself will be used for pagination */
