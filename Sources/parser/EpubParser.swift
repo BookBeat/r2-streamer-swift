@@ -115,7 +115,8 @@ final public class EpubParser {
         let drm = scanForDrm(in: container)
         // Parse the META-INF/Encryption.xml.
         parseEncryption(from: container, to: &publication, drm)
-
+        parseContentLengthInfo(from: container, to: &publication)
+        
         /// The folowing resources could be encrypted, hence we use the fetcher.
         let fetcher = try Fetcher.init(publication: publication, container: container)
 
@@ -430,5 +431,20 @@ final public class EpubParser {
                 link.properties.encryption?.profile = drm.profile
             }
         }
+    }
+}
+
+extension EpubParser {
+    
+    // This parsing can probably not handle DRM-protected files! We will probably need to use the fetcher for that.
+    static func parseContentLengthInfo(from container: Container, to publication: inout Publication) {
+        var spineContentLengthTuples = [(_: Link, _: Int)]()
+        for spineLink in publication.spine {
+            let dataLength = (try? container.data(relativePath: spineLink.href!).count) ?? 0
+            let spineContentLength = (spineItem: spineLink, contentLength: dataLength)
+            spineContentLengthTuples.append(spineContentLength)
+        }
+        
+        publication.contentLengthInfo = ContentLengthInfo(spineContentLengthTuples: spineContentLengthTuples)
     }
 }
