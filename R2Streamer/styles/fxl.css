@@ -1,0 +1,5 @@
+:root {
+  /* Prevents options pop-up when long tap in webkit */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}

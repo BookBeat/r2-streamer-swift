@@ -253,6 +253,8 @@ final internal class ContentFiltersEpub: ContentFilters {
         // Misc JS utils.
         includes.append(getHtmlScript(forResource: "\(baseUrl)scripts/\(utilsJS)"))
 
+        includes.append(getHtmlLink(forResource: "\(baseUrl)styles/fxl.css"))
+
         for element in includes {
             resourceHtml = resourceHtml.insert(string: element, at: endHeadIndex)
         }
