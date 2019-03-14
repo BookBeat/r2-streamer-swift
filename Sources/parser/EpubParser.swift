@@ -440,7 +440,13 @@ extension EpubParser {
     static func parseContentLengthInfo(from container: Container, to publication: inout Publication) {
         var spineContentLengthTuples = [(_: Link, _: Int)]()
         for spineLink in publication.spine {
-            let dataLength = (try? container.data(relativePath: spineLink.href!).count) ?? 0
+            let href = spineLink.href!
+            var data = try? container.data(relativePath: href)
+            if data == nil, let urlDecodedHref = href.removingPercentEncoding {
+                data = try? container.data(relativePath: urlDecodedHref)
+                if data != nil { spineLink.href! = urlDecodedHref }
+            }
+            let dataLength = data?.count ?? 0
             let spineContentLength = (spineItem: spineLink, contentLength: dataLength)
             spineContentLengthTuples.append(spineContentLength)
         }
