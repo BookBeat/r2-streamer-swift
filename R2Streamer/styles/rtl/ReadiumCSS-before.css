@@ -573,3 +573,12 @@ table {
   box-sizing: var(--RS__boxSizingTable);
 }
 /*# sourceMappingURL=ReadiumCSS-before.css.map */
+
+/* BookBeat CSS */
+
+table {
+    table-layout: fixed !important;
+    display: table !important;
+    width: 100%;
+    word-wrap: break-word;
+}

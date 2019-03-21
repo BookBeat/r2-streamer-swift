@@ -603,3 +603,12 @@ table {
   overflow-x: auto;
   box-sizing: var(--RS__boxSizingTable);
 }
+
+/* BookBeat CSS */
+
+table {
+    table-layout: fixed !important;
+    display: table !important;
+    width: 100%;
+    word-wrap: break-word;
+}
