@@ -1,6 +1,6 @@
-github "BookBeat/r2-shared-swift" "54bea7b9da2980da197b1b9208a0ef2f7c46c606"
+github "BookBeat/r2-shared-swift" "572f00addc1a266b15023bf7e819dc36cf65ee26"
 github "Hearst-DD/ObjectMapper" "3.3.0"
-github "cezheng/Fuzi" "b26786259f13b8a83eaff0ac46dd052c18960df5"
+github "cezheng/Fuzi" "ed17dcc06373c4316d4fb4888f1c2403edb66707"
 github "dexman/Minizip" "1.4.0"
 github "krzyzanowskim/CryptoSwift" "0.15.0"
 github "swisspol/GCDWebServer" "3.3.3"
