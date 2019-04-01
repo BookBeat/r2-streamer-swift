@@ -3,5 +3,5 @@ github "tadija/AEXML" == 4.2.2
 github "swisspol/GCDWebServer" == 3.3.3
 github "krzyzanowskim/CryptoSwift" == 0.15.0
 github "Hearst-DD/ObjectMapper" == 3.3
-github "cezheng/Fuzi" "master"
+github "cezheng/Fuzi" == 3.0.0
 github "dexman/Minizip"
