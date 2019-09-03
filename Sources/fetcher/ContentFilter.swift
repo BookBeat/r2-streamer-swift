@@ -201,7 +201,7 @@ final internal class ContentFiltersEpub: ContentFilters {
         }
         
         let cssBefore = getHtmlLink(forResource: "\(baseUrl)styles/\(styleSubFolder)/ReadiumCSS-before.css")
-        let viewport = "<meta name=\"viewport\" content=\"width=device-width, height=device-height, initial-scale=1.0;\"/>\n"
+        let viewport = "<meta name=\"viewport\" content=\"width=device-width, height=device-height, initial-scale=1.0, shrink-to-fit=no\"/>\n"
 
         resourceHtml = resourceHtml.insert(string: cssBefore, at: headStart)
         resourceHtml = resourceHtml.insert(string: viewport, at: headStart)
