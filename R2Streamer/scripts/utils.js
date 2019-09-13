@@ -42,12 +42,11 @@ var scrollToPosition = function(position, dir) {
     }
     var offset = 0.0;
     if (dir == 'rtl') {
-        offset = (-document.body.scrollWidth + maxScreenX) * (1.0-position);
+        offset = -document.scrollingElement.scrollWidth * (1.0-position);
     } else {
-        offset = document.body.scrollWidth * position;
+        offset = document.scrollingElement.scrollWidth * position;
     }
-    console.log(offset);
-    document.body.scrollLeft = snapOffset(offset);
+    document.scrollingElement.scrollLeft = snapOffset(offset);
 };
 
 var scrollLeft = function(dir) {
