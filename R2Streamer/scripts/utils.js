@@ -14,7 +14,7 @@ var update = function(position) {
 };
 
 window.addEventListener('scroll', function(e) {
-                       last_known_scroll_position = window.scrollX / document.getElementsByTagName("body")[0].scrollWidth;
+                       last_known_scroll_position = window.scrollX / document.scrollingElement.scrollWidth;
                        if (!ticking) {
                        window.requestAnimationFrame(function() {
                                                     update(last_known_scroll_position);
